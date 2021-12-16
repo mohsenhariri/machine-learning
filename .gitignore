@@ -1,0 +1,17 @@
+# Environment
+env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Jupyper Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode
+data
+
+
+# output models
+mnist/models
