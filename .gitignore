@@ -14,4 +14,4 @@ data
 
 
 # output models
-mnist/models
+mnist/model
