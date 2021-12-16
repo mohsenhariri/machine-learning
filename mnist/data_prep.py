@@ -12,9 +12,8 @@ train_data = datasets.MNIST(root="./data", train=True, transform=transform, down
 ### Number of datapoints: 60000
 
 test_data = datasets.MNIST(root="./data", transform=transform, train=False)
-# print(test_data)
 ### Number of datapoints: 10000
 
 train_loader = data.DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
 # test_loader = data.DataLoader(dataset=test_data, batch_size=batch_size, shuffle=True)
-test_loader = data.DataLoader(dataset=test_data)
+test_loader = data.DataLoader(dataset=test_data, batch_size=10000)  # default batch_size is 1

@@ -80,13 +80,32 @@ def show(img, y_estimate, y_label):
     plt.show()
 
 
-f = 0
-for i, (x, y) in enumerate(test_loader):
-    model_output = model(x)[0]
-    y_hat = torch.argmax(model_output)
-    if y_hat.item() != y.item():
-        show(x[0][0], y_hat.item(), y.item())
-        f = f + 1
+def accuracy_v1():  ## if batch size is 1.
+    f = 0
+    for i, (x, y) in enumerate(test_loader):
+        model_output = model(x)[0]
+        y_hat = torch.argmax(model_output)
+        if y_hat.item() != y.item():
+            show(x[0][0], y_hat.item(), y.item())
+            f = f + 1
 
-print(f"Total number of false estimation : {f}")
-print(f"Percent: {100- (100*f)/(i+1)}")
+    print(f"Total number of false estimation : {f}")
+    print(f"Percent: {100- (100*f)/(i+1)}")
+
+
+def accuracy():
+    f = 0
+    total_samples = 0
+    for i, (x, y) in enumerate(test_loader):  # if batch_size == total test samples, loop iterates one time.
+        out = model(x)[0]
+        total_samples = y.size()[0] + total_samples
+        # print(total_samples)
+        result = torch.argmax(input=out, dim=1)
+        diff = torch.sub(y, result)
+        f = torch.count_nonzero(diff) + f
+
+    print(f"Total number of false estimation : {f}")
+    print(f"Accuracy percent: {100- (100*f)/(total_samples)}")
+
+
+accuracy()
