@@ -2,32 +2,9 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import torchvision.transforms as T
+from utility import show2, show3, show4
 
 # from torchvision.transforms.transforms import ToTensor
-
-
-def show2(im1, im2):
-    f, ax = plt.subplots(1, 2)
-    ax[0].imshow(im1, cmap="gray")
-    ax[1].imshow(im2, cmap="gray")
-    plt.show()
-
-
-def show3(im1, im2, im3):
-    f, ax = plt.subplots(1, 3)
-    ax[0].imshow(im1, cmap="gray")
-    ax[1].imshow(im2, cmap="gray")
-    ax[2].imshow(im3, cmap="gray")
-    plt.show()
-
-
-def show4(im1, im2, im3, im4):
-    f, ax = plt.subplots(2, 2)
-    ax[0][0].imshow(im1, cmap="gray")
-    ax[0][1].imshow(im2, cmap="gray")
-    ax[1][0].imshow(im3, cmap="gray")
-    ax[1][1].imshow(im4, cmap="gray")
-    plt.show()
 
 
 img = Image.open("./data_augmentation/data/cat1.jpg")
@@ -62,11 +39,6 @@ transform = T.Compose(
 im_tensor = transform(img)
 plt.imshow(im_tensor[0], cmap="gray")
 plt.show()
-exit()
+# exit()
 # print(im_tensor.size())
-maxPooing_function = nn.MaxPool2d(kernel_size=(5, 5), stride=(5, 5))
 
-
-im_pooled = maxPooing_function(im_tensor)
-
-show2(im_tensor[0], im_pooled[0])

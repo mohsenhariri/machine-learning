@@ -15,3 +15,7 @@ data
 
 # output models
 mnist/model/*.model
+
+
+# 
+mnist_3D
