@@ -90,16 +90,11 @@
   source ./mnist/.env_variables && python ./mnist/model_type1.py
   ```
 
-<!-- ### Built With -->
-<!-- 
-- [Next.js](https://nextjs.org/)
-- [React.js](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Angular](https://angular.io/)
-- [Svelte](https://svelte.dev/)
-- [Laravel](https://laravel.com)
-- [Bootstrap](https://getbootstrap.com)
-- [JQuery](https://jquery.com) -->
+### Networks
+
+- [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1.py)
+- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
+
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 

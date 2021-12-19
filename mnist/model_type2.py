@@ -10,6 +10,9 @@ from data_prep import train_loader, test_loader
 # Hyperparamethers
 num_epochs = int(environ.get("NUM_EPOCHS"))
 lr = float(environ.get("LEARNING_RATE"))
+random_seed = int(environ.get("REPRODUCIBILITY"))
+
+torch.manual_seed(random_seed)
 
 
 class CNN(nn.Module):
@@ -34,15 +37,15 @@ class CNN(nn.Module):
         self.fc1 = nn.Linear(in_features=32 * 7 * 7, out_features=10)
 
     def forward(self, x):
-        x = self.conv1(x)
-        x = F.relu(x)
-        x = self.pool1(x)
-        x = self.conv2(x)
-        x = F.relu(x)
-        x = self.pool2(x)
-        x = x.view(x.size(0), -1)
-        out = self.fc1(x)
-        return out, x
+        z1 = self.conv1(x)
+        a1 = F.relu(z1)
+        z2 = self.pool1(a1)
+        z3 = self.conv2(z2)
+        a2 = F.relu(z3)
+        z4 = self.pool2(a2)
+        z4_flat = z4.view(z4.size(0), -1)
+        y_hat = self.fc1(z4_flat)
+        return y_hat, x
 
 
 model = CNN()

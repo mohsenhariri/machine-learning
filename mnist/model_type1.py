@@ -9,6 +9,9 @@ from data_prep import train_loader, test_loader
 # Hyperparamethers
 num_epochs = int(environ.get("NUM_EPOCHS"))
 lr = float(environ.get("LEARNING_RATE"))
+random_seed = int(environ.get("REPRODUCIBILITY"))
+
+torch.manual_seed(random_seed)
 
 
 class CNN(nn.Module):
@@ -46,7 +49,79 @@ class CNN(nn.Module):
         return out, x
 
 
-model = CNN()
+class CNN2(nn.Module):
+    def __init__(self) -> None:
+        super(CNN2, self).__init__()
+        self.NonLinearlayers = nn.Sequential(
+            nn.Conv2d(
+                in_channels=1,
+                out_channels=16,
+                kernel_size=5,
+                stride=1,
+                padding=2,
+            ),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Conv2d(
+                in_channels=16,
+                out_channels=32,
+                kernel_size=5,
+                stride=1,
+                padding=2,
+            ),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+        )
+
+        self.Linearlayers = nn.Sequential(
+            nn.Linear(
+                in_features=32 * 7 * 7,
+                out_features=10,
+            ),
+        )
+
+    def forward(self, x):
+        x = self.NonLinearlayers(x)
+        x = x.view(x.size(0), -1)
+        out = self.Linearlayers(x)
+        return out, x
+
+
+class CNN3(nn.Module):
+    def __init__(self) -> None:
+        super(CNN3, self).__init__()
+        self.Layers = nn.Sequential(
+            nn.Conv2d(
+                in_channels=1,
+                out_channels=16,
+                kernel_size=5,
+                stride=1,
+                padding=2,
+            ),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Conv2d(
+                in_channels=16,
+                out_channels=32,
+                kernel_size=5,
+                stride=1,
+                padding=2,
+            ),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Flatten(),
+            nn.Linear(
+                in_features=32 * 7 * 7,
+                out_features=10,
+            ),
+        )
+
+    def forward(self, x):
+        out = self.Layers(x)
+        return out, x
+
+
+model = CNN3()
 # print(model)
 
 loss_func = nn.CrossEntropyLoss()
