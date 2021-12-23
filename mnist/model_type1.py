@@ -2,6 +2,7 @@ from os import environ
 import time
 import torch
 import torch.nn as nn
+from torch.utils.tensorboard import SummaryWriter
 import matplotlib.pyplot as plt
 
 from data_prep import train_loader, test_loader
@@ -12,6 +13,7 @@ lr = float(environ.get("LEARNING_RATE"))
 random_seed = int(environ.get("REPRODUCIBILITY"))
 
 torch.manual_seed(random_seed)
+writer = SummaryWriter(log_dir="./mnist/runs")
 
 
 class CNN(nn.Module):
@@ -121,32 +123,84 @@ class CNN3(nn.Module):
         return out, x
 
 
-model = CNN3()
-# print(model)
+class CNN4(nn.Module):
+    def __init__(self) -> None:
+        super(CNN4, self).__init__()
+        self.layer = nn.Sequential(nn.Conv2d(in_channels=1, out_channels=3, kernel_size=2, stride=1))
+        # self.layer = nn.Conv2d(in_channels=1, out_channels=3, kernel_size=1, stride=1)
 
-loss_func = nn.CrossEntropyLoss()
+    def forward(self, x):
+        out = self.layer(x)
+        return out, x
+
+
+model = CNN3()
+# print("Model structure: ", model, "\n\n")
+
+
+criterion = nn.CrossEntropyLoss()
 
 # optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 
 
-for i in range(num_epochs):
-    for j, (x, y) in enumerate(train_loader):
-        # x and y includes batch_size samples
-        y_estimated_hat = model(x)[0]
-        y_real = y
-        loss = loss_func(model(x)[0], y)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+# for i,params in enumerate(model.parameters()):
+# for i, (name, param) in enumerate(model.named_parameters()):
+#     # print(param.data)
+#     print(
+#         f"""
+#     \n{i} Iteration,
+#     \n Layer: {name}
+#     \n Size: {param.size()}
+#     \n Values : {param.data}"""
+#     # \n Values : {param[:2]}"""
 
-        print(f"Epoch: {i+1}, loss after {j+1} bach {loss_func(y_estimated_hat,y_real)}")
+#     )
 
 
-print("Training was finished.")
-current_time = time.strftime("%H-%M-%S")
-path = f"./mnist/model/{current_time}.model"
-torch.save(model.state_dict(), path)
+def train(model, criterion, optimizer):
+    print("Training starts")
+    for i in range(num_epochs):
+        for j, (x, y) in enumerate(train_loader):
+            # x and y includes batch_size samples
+            # forward
+            y_hat = model(x)[0]
+            loss = criterion(y_hat, y)
+            # log
+            writer.add_scalar("Loss/train", loss, j)
+            # backwards
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            # print(f"Epoch: {i+1}, loss after {j+1} bach {loss}")
+        print(f"Epoch {i+1} was finished.")
+
+    print("Training was finished.")
+
+
+def save_model():
+    current_time = time.strftime("%H-%M-%S")
+    torch.save(model.state_dict(), f"./mnist/models/{current_time}_dict.pth")
+    torch.save(model, f"./mnist/models/{current_time}.pth")
+    print("Model was saved.")
+
+
+def load_model(path):
+    model = torch.load(f"./mnist/models/{path}")
+    # model.eval()
+
+    # print("Architecture of network is: ", model)
+    return model
+    # print(model.parameters())
+    # for params in model.parameters():
+    #     print(params)
+
+    # for params in model.biases():
+    #     print(params)
+
+    # for params in model.parameters():
+    #     print(params)
 
 
 def show(img, y_estimate, y_label):
@@ -168,19 +222,28 @@ def accuracy_v1():  ## if batch size is 1.
     print(f"Percent: {100- (100*f)/(i+1)}")
 
 
-def accuracy():
+def accuracy(model, dataset):
     f = 0
     total_samples = 0
-    for i, (x, y) in enumerate(test_loader):  # if batch_size == total test samples, loop iterates one time.
+    for i, (x, y) in enumerate(dataset):  # if batch_size == total test samples, loop iterates one time.
         out = model(x)[0]
-        total_samples = y.size()[0] + total_samples
-        # print(total_samples)
+        total_samples += y.size()[0]
+        # print(y.size()[0]) this is batch size
         result = torch.argmax(input=out, dim=1)
         diff = torch.sub(y, result)
-        f = torch.count_nonzero(diff) + f
+        f += torch.count_nonzero(diff)
 
     print(f"Total number of false estimation : {f}")
     print(f"Accuracy percent: {100- (100*f)/(total_samples)}")
 
 
-accuracy()
+# exit()
+
+train(model, criterion, optimizer)
+# save_model()
+# model = load_model("22-50-53.pth")
+accuracy(model, test_loader)
+
+# print()
+writer.flush()
+writer.close()

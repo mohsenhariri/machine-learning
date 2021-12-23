@@ -3,6 +3,7 @@ import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.utils.tensorboard import SummaryWriter
 import matplotlib.pyplot as plt
 
 from data_prep import train_loader, test_loader
@@ -35,6 +36,7 @@ class CNN(nn.Module):
         )
         self.pool2 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(in_features=32 * 7 * 7, out_features=10)
+        self.w = SummaryWriter(log_dir="./mnist/runs/model2")
 
     def forward(self, x):
         z1 = self.conv1(x)
@@ -52,7 +54,7 @@ model = CNN()
 # print(model)
 
 
-loss_func = nn.CrossEntropyLoss()
+criterion = nn.CrossEntropyLoss()
 
 # optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 optimizer = torch.optim.SGD(model.parameters(), lr=lr)
@@ -61,19 +63,19 @@ optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 for i in range(num_epochs):
     for j, (x, y) in enumerate(train_loader):
         # x and y includes batch_size samples
-        y_estimated_hat = model(x)[0]
+        y_hat = model(x)[0]
         y_real = y
-        loss = loss_func(model(x)[0], y)
+        loss = criterion(y_hat, y)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
-        print(f"Epoch: {i+1}, loss after {j+1} batch {loss_func(y_estimated_hat,y_real)}")
+        print(f"Epoch: {i+1}, loss after {j+1} batch {loss}")
 
 
 print("Training was finished.")
 current_time = time.strftime("%H-%M-%S")
-path = f"./mnist/model/{current_time}.model"
+path = f"./mnist/models/{current_time}._dict.pth"
 torch.save(model.state_dict(), path)
 
 

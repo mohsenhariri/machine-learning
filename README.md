@@ -90,11 +90,14 @@
   source ./mnist/.env_variables && python ./mnist/model_type1.py
   ```
 
-### Networks
+### Network Architectures
 
+- [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1_fc.py)
 - [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1.py)
 - [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
-
+- [VGG](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
+- [GoogLeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
+- [ResNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 

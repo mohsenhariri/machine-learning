@@ -14,8 +14,9 @@ data
 
 
 # output models
-mnist/model/*.model
+mnist/models/*.pth
 
-
+# tensorboard 
+mnist/runs/*/events.*
 # 
 mnist_3D
