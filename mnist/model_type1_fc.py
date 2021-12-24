@@ -16,7 +16,7 @@ except:
     random_seed = 777
 
 torch.manual_seed(random_seed)
-writer = SummaryWriter(log_dir="./mnist/runs/2")
+writer = SummaryWriter(log_dir="./mnist/runs/1")
 
 
 class NN(nn.Module):
@@ -46,6 +46,30 @@ sample_label_batch = sample_dataset_batch[1]
 # writer.add_graph(model=model, input_to_model=sample_input_batch.view(-1,28*28))
 writer.add_graph(model, sample_input_batch)
 
+# def activation_hook(inst, inp, out):
+#     # print("Here")
+#     writer.add_histogram(repr(inst), out)
+
+
+model.fc1.register_forward_hook(lambda module, input, output: writer.add_histogram(tag=repr(module), values=output))
+model.fc2.register_forward_hook(lambda module, input, output: writer.add_histogram(tag="tag for hist", values=output))
+
+
+def printnorm(self, input, output):
+    # input is a tuple of packed inputs
+    # output is a Tensor. output.data is the Tensor we are interested
+    print('Inside ' + self.__class__.__name__ + ' forward')
+    print('')
+    print('input: ', type(input))
+    print('input[0]: ', type(input[0]))
+    print('output: ', type(output))
+    print('')
+    print('input size:', input[0].size())
+    print('output size:', output.data.size())
+    print('output norm:', output.data.norm())
+
+
+# model.fc1.register_forward_hook(printnorm)
 
 def train(model, criterion, optimizer):
     print("Training starts")
