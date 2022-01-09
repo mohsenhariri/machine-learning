@@ -22,20 +22,25 @@ writer = SummaryWriter(log_dir="./mnist/runs/1")
 class NN(nn.Module):
     def __init__(self) -> None:
         super(NN, self).__init__()
-        self.fc1 = nn.Linear(in_features=28 * 28, out_features=100)
+        self.fc1 = nn.Linear(in_features=28 * 28, out_features=74)
         self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(in_features=100, out_features=10)
+        self.fc2 = nn.Linear(in_features=74, out_features=10)
 
     def forward(self, x):
         x_flatted = x.view(x.size(0), -1)
         z = self.fc1(x_flatted)
         a = self.relu(z)
         out = self.fc2(a)
-        return out, x
+        return out
 
 
 model = NN()
+# print(model.fc1.weight.size())
+# print(model.fc1.bias.size())
 
+# print(model.fc2.weight.size())
+# print(model.fc2.bias.size())
+# exit()
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(params=model.parameters(), lr=lr)
 
@@ -58,18 +63,20 @@ model.fc2.register_forward_hook(lambda module, input, output: writer.add_histogr
 def printnorm(self, input, output):
     # input is a tuple of packed inputs
     # output is a Tensor. output.data is the Tensor we are interested
-    print('Inside ' + self.__class__.__name__ + ' forward')
-    print('')
-    print('input: ', type(input))
-    print('input[0]: ', type(input[0]))
-    print('output: ', type(output))
-    print('')
-    print('input size:', input[0].size())
-    print('output size:', output.data.size())
-    print('output norm:', output.data.norm())
+    # print('Inside ' + self.__class__.__name__ + ' forward')
+    # print('')
+    # print('input: ', type(input))
+    # print('input[0]: ', type(input[0]))
+    # print('output: ', type(output))
+    # print('')
+    # print('input size:', input[0].size())
+    # print('output size:', output.data.size())
+    # print('output norm:', output.data.norm())
+    # exit()
+    pass
 
 
-# model.fc1.register_forward_hook(printnorm)
+model.fc1.register_forward_hook(printnorm)
 
 def train(model, criterion, optimizer):
     print("Training starts")
@@ -77,21 +84,21 @@ def train(model, criterion, optimizer):
     for epoch in range(num_epochs):
         for batch_ndx, (x, y) in enumerate(train_loader):
             # x and y includes batch_size samples
-            img_grid = torchvision.utils.make_grid(x)
-            writer.add_image(tag=f"batch_iter: {batch_ndx}", img_tensor=img_grid)
+            # img_grid = torchvision.utils.make_grid(x)
+            # writer.add_image(tag=f"batch_iter: {batch_ndx}", img_tensor=img_grid)
             # forward
-            y_hat = model(x)[0]
+            y_hat = model(x)
             loss = criterion(y_hat, y)
             # backwards
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             # log
-            print(f"Epoch: {epoch+1}, loss after {batch_ndx+1} bach {loss}")
-            if (batch_ndx + 1) % 20 == 0:
-                step = step + batch_ndx
-                writer.add_scalar("accuracy", accuracy(model, dataset=test_loader).item(), step)
-                writer.add_scalar("loss", loss.item(), step)
+            # print(f"Epoch: {epoch+1}, loss after {batch_ndx+1} bach {loss}")
+            # if (batch_ndx + 1) % 20 == 0:
+            #     step = step + batch_ndx
+            #     writer.add_scalar("accuracy", accuracy(model, dataset=test_loader).item(), step)
+            #     writer.add_scalar("loss", loss.item(), step)
 
         print(f"Epoch {epoch+1} was finished.")
 
@@ -102,7 +109,7 @@ def accuracy(model, dataset):
     f = 0
     total_samples = 0
     for i, (x, y) in enumerate(dataset):  # if batch_size == total test samples, loop iterates one time.
-        out = model(x)[0]
+        out = model(x)
         total_samples += y.size()[0]
         # print(y.size()[0]) this is batch size
         result = torch.argmax(input=out, dim=1)

@@ -26,7 +26,7 @@ class NN(nn.Module):
     def __init__(self) -> None:
         super(NN, self).__init__()
 
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=10, kernel_size=2, stride=2)
+        self.conv1 = nn.Conv2d(in_channels=2, out_channels=10, kernel_size=2, stride=2)
         self.fc1 = nn.Linear(in_features=10 * 14 * 14, out_features=10)
         # self.relu = nn.ReLU()
         # self.fc2 = nn.Linear(in_features=100, out_features=10)
@@ -57,6 +57,16 @@ class NN(nn.Module):
 
 
 model = NN()
+
+
+print(model.conv1.weight.size())
+print(model.conv1.bias.size())
+# print(model.fc2.bias.size())
+
+# print(model.fc1.weight.size())
+# print(model.fc1.bias.size())
+
+exit()
 
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(params=model.parameters(), lr=lr)

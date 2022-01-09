@@ -14,9 +14,11 @@ data
 
 
 # output models
-mnist/models/*.pth
+saved_models/
 
 # tensorboard 
-mnist/runs/*/events.*
-# 
+runs/
+
+# incomplete directories
 mnist_3D
+learn

@@ -84,7 +84,6 @@
 
 <p align="right">(<a href="#top">back to top</a>)</p> -->
 
-
 - MNIST
   ```sh
   source ./mnist/.env_variables && python ./mnist/model_type1.py
@@ -92,12 +91,24 @@
 
 ### Network Architectures
 
+- Classifier or Fully connected ✅
+- LeNet5 ✅
+- AlexNet ✅
+- VGG
+- GoogLeNet ✅
+- ResNet
+
+### MNIST
+
 - [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1_fc.py)
 - [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1.py)
 - [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
-- [VGG](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
-- [GoogLeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
-- [ResNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
+
+### CIFAR10
+
+- [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
+- [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
+- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 
@@ -138,7 +149,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 
 <!-- ## Usage -->
-<!-- 
+<!--
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
@@ -196,7 +207,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 
 <!-- ## Acknowledgments -->
-<!-- 
+<!--
 - []()
 - []()
 - []() -->
