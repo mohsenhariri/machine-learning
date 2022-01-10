@@ -1,7 +1,6 @@
-from os import environ
+from os import environ, path
 import torch
 import torch.nn as nn
-import torchvision
 from torch.utils.tensorboard import SummaryWriter
 from data_prep import train_loader, test_loader
 
@@ -16,7 +15,15 @@ except:
     random_seed = 777
 
 torch.manual_seed(random_seed)
-writer = SummaryWriter(log_dir="./mnist/runs/1")
+
+j = 0
+while True:
+    j += 1
+    file_exists = path.exists(f"./mnist/runs/{j}")
+    if not file_exists:
+        break
+
+writer = SummaryWriter(log_dir=f"./mnist/runs/{j}")
 
 
 class NN(nn.Module):

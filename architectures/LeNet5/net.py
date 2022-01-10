@@ -19,7 +19,8 @@ class LeNet5(nn.Module):
         self.pool2 = nn.MaxPool2d(kernel_size=2)
 
         self.fc_layers = nn.Sequential(
-            nn.Linear(256, 120),
+            nn.Linear(400, 120),
+            # nn.Linear(256, 120),
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),

@@ -16,3 +16,4 @@ def save_model(model,path):
 model = torch.load('./mnist/model/21-35-46.pthfull')
 # print(model.eval())
 
+

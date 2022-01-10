@@ -101,8 +101,8 @@
 ### MNIST
 
 - [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1_fc.py)
-- [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1.py)
-- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type2.py)
+- [LeNet5](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/lenet5.py)
+- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/alex.py)
 
 ### CIFAR10
 

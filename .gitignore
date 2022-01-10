@@ -5,12 +5,19 @@ env
 __pycache__/
 *.py[cod]
 
+# Distribution / packaging
+dist/
+*.egg-info/
+
 # Jupyper Notebook
 .ipynb_checkpoints
 
 # VS Code
 .vscode
 data
+
+
+
 
 
 # output models
