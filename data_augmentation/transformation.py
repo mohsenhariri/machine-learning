@@ -2,12 +2,12 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import torchvision.transforms as T
-from utility import show2, show3, show4
+from data_augmentation.utility import show2, show3, show4
 
 # from torchvision.transforms.transforms import ToTensor
 
 
-img = Image.open("./data_augmentation/data/cat1.jpg")
+img = Image.open("./data/custom_cat_dog/cat1.jpg")
 
 
 # img = cv.imread("./data_augmentation/data/cat1.jpg")
@@ -41,4 +41,3 @@ plt.imshow(im_tensor[0], cmap="gray")
 plt.show()
 # exit()
 # print(im_tensor.size())
-

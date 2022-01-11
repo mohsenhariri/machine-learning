@@ -14,7 +14,13 @@ dist/
 
 # VS Code
 .vscode
-data
+
+# Datasets
+data/CIFAR10/
+data/MNIST/
+data/ImageNet/
+data/data_dicom/
+
 
 
 

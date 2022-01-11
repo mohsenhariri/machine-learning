@@ -6,6 +6,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as T
 
+__all__ = ["train_loader", "test_loader"]
+
 
 class BuildDataset(Dataset):
     def __init__(self, csv_file, root, transform=None) -> None:
@@ -33,29 +35,31 @@ class BuildDataset(Dataset):
         return "dataset"
 
 
-cats_dogs_dataset = BuildDataset(csv_file="./data/custom_cat_dog/label.csv", root="./data/custom_cat_dog", transform=T.ToTensor())
+cats_dogs_dataset = BuildDataset(csv_file="./data/custom_cat_dog/resize/label.csv", root="./data/custom_cat_dog/resize", transform=T.ToTensor())
 
-# print(cats_dogs_dataset)
 
 train_loader = DataLoader(dataset=cats_dogs_dataset, shuffle=True, batch_size=2)
-test_loader = DataLoader(dataset=cats_dogs_dataset, shuffle=True, batch_size=1)
+test_loader = DataLoader(dataset=cats_dogs_dataset, shuffle=True, batch_size=3)
+
+# for batch_ndx, (x, y) in enumerate(train_loader):
+#     print(x.size())
+# x and y includes batch_size samples
+# img_grid = torchvision.utils.make_grid(x)
+# writer.add_image(tag=f"batch_iter: {batch_ndx}", img_tensor=img_grid)
+# forward
+# y_hat = model(x)
+# loss = criterion(y_hat, y)
+# backwards
+
 
 # exit()
 
 
-def main():
-    pass
+# transfor = T.Compose([T.ToPILImage(), T.RandAugment()])
 
+# dataset_augmented = BuildDataset(csv_file="./data/custom_cat_dog/data/label.csv", root="./data/custom_cat_dog/data", transform=T.ToTensor())
 
-if __name__ == "__main__":
-    main()
-
-
-transfor = T.Compose([T.ToPILImage(), T.RandAugment()])
-
-dataset_augmented = BuildDataset(csv_file="./data/custom_cat_dog/data/label.csv", root="./data/custom_cat_dog/data", transform=T.ToTensor())
-
-for x, y in cats_dogs_dataset:
-    print(x.size())
-    print(y)
+# for x, y in cats_dogs_dataset:
+#     print(x.size())
+#     print(y)
     # exit()

@@ -6,8 +6,8 @@ import numpy as np
 from torch.utils.tensorboard import SummaryWriter
 
 # from data.mnist import train_loader,test_loader
-from data.cifar import train_loader, test_loader
-
+# from data.cifar import train_loader, test_loader
+from data.custom_cat_dog import train_loader
 
 j = 0
 while True:
@@ -23,6 +23,7 @@ writer = SummaryWriter(log_dir=f"./image_processing/runs/{j}")
 # t23 = torch.tensor([[1, 0], [0, 1]]).reshape([1, 1, 2, 2])
 
 kernel = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
+# sobel_kernel = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 initial_value = torch.tensor(kernel)
 
 
@@ -69,8 +70,8 @@ for batch_ndx, (x, y) in enumerate(train_loader):
     img_grid = torchvision.utils.make_grid(x)
     writer.add_image(tag=f"Original- batch_iter: {batch_ndx}", img_tensor=img_grid)
 
-    y_hat = model(x)
-    img_grid = torchvision.utils.make_grid(x)
+    output_conv = model(x)
+    img_grid = torchvision.utils.make_grid(output_conv)
     writer.add_image(tag=f"batch_iter: {batch_ndx}", img_tensor=img_grid)
     writer.close()
 
