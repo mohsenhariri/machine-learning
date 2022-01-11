@@ -33,9 +33,7 @@ class BuildDataset(Dataset):
         return "dataset"
 
 
-cats_dogs_dataset = BuildDataset(
-    csv_file="./data_augmentation/data/label.csv", root="./data_augmentation/data", transform=T.ToTensor()
-)
+cats_dogs_dataset = BuildDataset(csv_file="./data/custom_cat_dog/label.csv", root="./data/custom_cat_dog", transform=T.ToTensor())
 
 # print(cats_dogs_dataset)
 
@@ -55,9 +53,7 @@ if __name__ == "__main__":
 
 transfor = T.Compose([T.ToPILImage(), T.RandAugment()])
 
-dataset_augmented = BuildDataset(
-    csv_file="./data_augmentation/data/label.csv", root="./data_augmentation/data", transform=T.ToTensor()
-)
+dataset_augmented = BuildDataset(csv_file="./data/custom_cat_dog/data/label.csv", root="./data/custom_cat_dog/data", transform=T.ToTensor())
 
 for x, y in cats_dogs_dataset:
     print(x.size())

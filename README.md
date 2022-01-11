@@ -75,7 +75,11 @@
 </details> -->
 
 <!-- ABOUT THE PROJECT -->
+## Changes ⚠️
 
+These two changes don't apply to all models.  ⚠️
+- Integration of all data_prep: data preparation path was changed to data directory.
+- Custom dataset builder source file was transferred to data directory.
 ## How to run
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->

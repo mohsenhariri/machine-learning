@@ -1,6 +1,7 @@
 from os import environ, path
 from architectures.LeNet5.net import LeNet5
-from .data_prep import train_loader, test_loader
+# from .data_prep import train_loader, test_loader
+from data.mnist import train_loader, test_loader
 import torch
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter

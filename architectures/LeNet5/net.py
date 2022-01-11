@@ -11,11 +11,8 @@ class LeNet5(nn.Module):
         in_channels = 3 if is_colored else 1
 
         self.conv1 = nn.Conv2d(in_channels, out_channels=6, kernel_size=5, padding=2)
-
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
-
         self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5)
-
         self.pool2 = nn.MaxPool2d(kernel_size=2)
 
         self.fc_layers = nn.Sequential(
