@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
-image = Image.open("./data_augmentation/data/cat1.jpg")
+image = Image.open("./data/custom_cat_dog/cat1.jpg")
 transform = T.ToTensor()
 
 img = transform(image)

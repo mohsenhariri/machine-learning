@@ -1,8 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-
-img = cv.imread("./data_augmentation/data/cat1.jpg")
+img = cv.imread("./data/custom_cat_dog/cat1.jpg")
 
 # kernel = np.ones((5, 5), np.float32) / 25
 kernel = np.ones((5, 5), np.float32) / 25
@@ -27,19 +26,19 @@ filtered_img4 = cv.filter2D(img, -1, emboss_kernel)
 # cv.imshow("1", filtered_img1)
 # cv.imshow("2", filtered_img2)
 # cv.imshow("3", filtered_img3)
-# cv.imshow("4", filtered_img4)
+cv.imshow("4", filtered_img4)
 
 # print(img[:, :, 0].shape)
-img_r = img[:,:,0]
+img_r = img[:, :, 0]
 print(np.shape(img_r))
 
 print(np.max(img_r))
 
-m,n = 3,4
-k=3
+m, n = 3, 4
+k = 3
 for i in range(m):
-  for j in range(n):
-    img_r[:]
+    for j in range(n):
+        img_r[:]
 
 
 # cv.imshow("R", img[:, :, 2])
