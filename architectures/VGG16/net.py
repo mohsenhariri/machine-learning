@@ -18,7 +18,6 @@ class VGG16(nn.Module):
 
         h = int(input_size[0] / 2 ** 5)
         w = int(input_size[1] / 2 ** 5)
-        print(h, w)
 
         self.avgpool = nn.AdaptiveAvgPool2d((h, w))
 
@@ -43,7 +42,7 @@ class VGG16(nn.Module):
         f5 = self.feature5(f4)
         z = self.avgpool(f5)
         # a = z.view(z.size(0), -1)
-        a = torch.flatten(x, 1)
+        a = torch.flatten(z, 1)
         out = self.classifier(a)
         return out
 
@@ -73,10 +72,13 @@ class VGG16(nn.Module):
         )
 
 
-model = VGG16()
+def main():
+    model = VGG16()
+    print(model)
 
-print(model)
 
+if __name__ == "__main__":
+    main()
 
 """
 

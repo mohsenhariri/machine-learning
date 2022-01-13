@@ -13,6 +13,14 @@ except:
 
 
 transform = transforms.ToTensor()
+
+# transform = transforms.Compose(
+#     [
+#         transforms.Resize((224, 224)),
+#         transforms.ToTensor(),
+#     ]
+# )
+
 file_exists = path.exists("./data/CIFAR10")
 
 train_data = datasets.CIFAR10(root="./data/CIFAR10", train=True, transform=transform, download=not file_exists)

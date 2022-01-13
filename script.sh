@@ -7,11 +7,14 @@ rm -rf ./cifar/runs/*
 
 export PYTHONPATH="${PYTHONPATH}:."
 
-# source ./mnist/.env_variables && python ./mnist/model_type1.py
 
 
 ### Python Setup
 
 python setup.py sdist
+
+source ./mnist/.env_variables && python main.py
+source ./cifar/.env_variables && python main.py
+
 
 tensorboard --logdir=./mnist/runs

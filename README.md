@@ -75,11 +75,14 @@
 </details> -->
 
 <!-- ABOUT THE PROJECT -->
+
 ## Changes ⚠️
 
-These two changes don't apply to all models.  ⚠️
+These two changes don't apply to all models. ⚠️
+
 - Integration of all data_prep: data preparation path was changed to data directory.
 - Custom dataset builder source file was transferred to data directory.
+
 ## How to run
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -89,8 +92,14 @@ These two changes don't apply to all models.  ⚠️
 <p align="right">(<a href="#top">back to top</a>)</p> -->
 
 - MNIST
+
   ```sh
-  source ./mnist/.env_variables && python ./mnist/model_type1.py
+  source ./mnist/.env_variables && python ./main.py
+  ```
+
+- CIFAR10
+  ```sh
+  source ./cifar/.env_variables && python ./main.py
   ```
 
 ### Network Architectures
@@ -98,7 +107,7 @@ These two changes don't apply to all models.  ⚠️
 - Classifier or Fully connected ✅
 - LeNet5 ✅
 - AlexNet ✅
-- VGG
+- VGG ✅
 - GoogLeNet ✅
 - ResNet
 
@@ -110,9 +119,10 @@ These two changes don't apply to all models.  ⚠️
 
 ### CIFAR10
 
+- [LeNet5](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/lenet5.py)
+- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/alex.py)
+- [VGG16](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/vgg16.py)
 - [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
-- [LeNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
-- [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 

@@ -30,3 +30,18 @@ Padding = padH, padW
 $$Output_H = \frac{I_H + 2 * padH - K_H}{S_H} + 1$$
 
 $$Output_W = \frac{I_W + 2 * padW - K_W}{S_W} + 1$$
+
+
+# Max Pooling
+
+Input = (I<sub>H</sub>, I<sub>W</sub>)
+
+Kernel = (K<sub>H</sub>, K<sub>W</sub>)
+
+Stride = (S<sub>H</sub>, S<sub>W</sub>)
+
+Padding = padH, padW
+
+$$Output_H = \frac{I_H + 2 * padH - K_H}{S_H} + 1$$
+
+$$Output_W = \frac{I_W + 2 * padW - K_W}{S_W} + 1$$
