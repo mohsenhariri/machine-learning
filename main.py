@@ -12,7 +12,11 @@
 # Image Processing
 # import image_processing.conv_pytorch
 # import image_processing.conv_opencv
-import image_processing.semantic_segmentation
+# import image_processing.semantic_segmentation
+
+import architectures.VGG16.net
+
+
 
 
 
