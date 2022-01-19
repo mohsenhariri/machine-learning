@@ -24,6 +24,7 @@
 # import architectures.LeNet5.net
 # import architectures.AlexNet.net
 # import architectures.VGG16.net
+import architectures.UNet.net
 
 
 

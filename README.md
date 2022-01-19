@@ -109,7 +109,8 @@ These two changes don't apply to all models. ⚠️
 - AlexNet ✅
 - VGG ✅
 - GoogLeNet ✅
-- ResNet
+- ResNet ✅
+- U-Net ✅
 
 ### MNIST
 
@@ -123,6 +124,22 @@ These two changes don't apply to all models. ⚠️
 - [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/alex.py)
 - [VGG16](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/vgg16.py)
 - [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
+
+
+
+### References
+
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun Deep Residual Learning for Image Recognition https://arxiv.org/pdf/1512.03385.pdf
+<!-- [1] -->
+
+<!-- [1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle -->
+<!-- [1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle "Hobbit lifestyles" -->
+<!-- [1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle 'Hobbit lifestyles' -->
+<!-- [1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle (Hobbit lifestyles) -->
+<!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> "Hobbit lifestyles" -->
+<!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> 'Hobbit lifestyles' -->
+<!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> (Hobbit lifestyles) -->
+
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 

@@ -10,13 +10,13 @@ class Net(nn.Module):
         # nn.init.kaiming_normal_(self.fc2.weight, mode="fan_in", nonlinearity="relu")
         # nn.init.xavier_normal_(self.fc3.weight)
 
-        self._initailization()
+        self._initialization()
 
     def forward(self, x) -> torch.Tensor:
         return x
 
-    def _initailization(self) -> None:
-        for layer in self.layerodules():
+    def _initialization(self) -> None:
+        for layer in self.layermodules():
             if isinstance(layer, nn.Conv2d):
                 nn.init.kaiming_uniform_(layer.weight)
                 # nn.init.constant_(layer.weight, 0)
