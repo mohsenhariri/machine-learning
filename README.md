@@ -151,7 +151,7 @@ These two changes don't apply to all models. ⚠️
 
 ### References
 
-Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun Deep Residual Learning for Image Recognition https://arxiv.org/pdf/1512.03385.pdf
+<a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank">Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun Deep Residual Learning for Image Recognition </a>
 
 <!-- [1] -->
 

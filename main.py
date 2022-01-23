@@ -9,8 +9,10 @@
 
 
 # Data Preparation
-# import data.mnist
-import data.cifar
+import data.mnist
+# import data.cifar
+# import data.fashion_mnist
+
 
 # Data Augmentation
 # import data_augmentation.a_dataset_normalizer

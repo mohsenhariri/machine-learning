@@ -1,3 +1,15 @@
+"""
+Train data:  
+Number of datapoints: 50000
+
+Test Data:
+Number of datapoints: 10000
+
+Input:
+3*32*32
+
+Number of classes: 10
+"""
 from os import path
 from torchvision import datasets, transforms
 from torch.utils import data
