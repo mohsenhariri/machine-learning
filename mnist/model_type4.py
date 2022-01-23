@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from data_prep import train_loader, test_loader
 
 
-# Hyperparamethers
+# Hyperparameters
 num_epochs = int(environ.get("NUM_EPOCHS"))
 lr = float(environ.get("LEARNING_RATE"))
 momentum = float(environ.get("MOMENTUM"))

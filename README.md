@@ -76,6 +76,39 @@
 
 <!-- ABOUT THE PROJECT -->
 
+## Hyperparameters
+
+The argument values have priority over the environment variables.
+If both of them are set, the environment variable is ignored.
+
+- Test hyperparameters
+```sh
+  python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
+```
+- Test hyperparameters with environment variables
+
+```sh
+source ./path/to/.env_variables &&  python hyperparameters.py
+```
+
+for example:
+
+```sh
+source ./mnist/.env_variables && python hyperparameters.py
+```
+
+for training models with arguments:
+
+```sh
+python main.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
+```
+
+for training models with environment variables:
+
+```sh
+source ./path/to/.env_variables && python main.py
+```
+
 ## Changes ⚠️
 
 These two changes don't apply to all models. ⚠️
@@ -125,11 +158,10 @@ These two changes don't apply to all models. ⚠️
 - [VGG16](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/vgg16.py)
 - [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
 
-
-
 ### References
 
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun Deep Residual Learning for Image Recognition https://arxiv.org/pdf/1512.03385.pdf
+
 <!-- [1] -->
 
 <!-- [1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle -->
@@ -139,7 +171,6 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun Deep Residual Learning for Ima
 <!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> "Hobbit lifestyles" -->
 <!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> 'Hobbit lifestyles' -->
 <!-- [1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> (Hobbit lifestyles) -->
-
 
 <!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 

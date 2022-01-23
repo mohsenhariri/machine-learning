@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
-# Hyperparamethers
+# Hyperparameters
 try:
     num_epochs = int(environ.get("NUM_EPOCHS"))
     lr = float(environ.get("LEARNING_RATE"))

@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 
-# Hyperparamethers
+# Hyperparameters
 try:
     num_epochs = int(environ.get("NUM_EPOCHS"))
     lr = float(environ.get("LEARNING_RATE"))

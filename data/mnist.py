@@ -1,15 +1,10 @@
-from os import path, environ
+from os import path
 from torchvision import datasets, transforms
 from torch.utils import data
+from hyperparameters import hp
+
 
 __all__ = ["train_loader", "test_loader"]
-
-try:
-    batch_size = int(environ.get("BATCH_SIZE"))
-except:
-    batch_size = 1
-
-# batch_size = int(environ.get("BATCH_SIZE")) if environ.get("BATCH_SIZE") else 1
 
 
 transform = transforms.ToTensor()
@@ -21,8 +16,7 @@ train_data = datasets.MNIST(root="./data", train=True, transform=transform, down
 test_data = datasets.MNIST(root="./data", transform=transform, train=False)
 ### Number of datapoints: 10000
 
-train_loader = data.DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
-# test_loader = data.DataLoader(dataset=test_data, batch_size=batch_size, shuffle=True)
+train_loader = data.DataLoader(dataset=train_data, batch_size=hp.batch_size, shuffle=True)
 
 test_loader = data.DataLoader(dataset=test_data, batch_size=10000)  # default batch_size is 1
 

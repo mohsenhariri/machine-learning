@@ -8,6 +8,9 @@
 # import cifar.vgg16
 
 
+# Data Preparation
+# import data.mnist
+import data.cifar
 
 # Data Augmentation
 # import data_augmentation.a_dataset_normalizer
@@ -24,7 +27,7 @@
 # import architectures.LeNet5.net
 # import architectures.AlexNet.net
 # import architectures.VGG16.net
-import architectures.UNet.net
+# import architectures.UNet.net
 
 
 

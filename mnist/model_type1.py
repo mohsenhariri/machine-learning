@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 from data_prep import train_loader, test_loader
 
-# Hyperparamethers
+# Hyperparameters
 num_epochs = int(environ.get("NUM_EPOCHS"))
 lr = float(environ.get("LEARNING_RATE"))
 random_seed = int(environ.get("REPRODUCIBILITY"))
