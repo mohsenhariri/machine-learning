@@ -82,32 +82,23 @@ The argument values have priority over the environment variables.
 If both of them are set, the environment variable is ignored.
 
 - Test hyperparameters
-```sh
-  python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
-```
+  ```sh
+    python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
+  ```
 - Test hyperparameters with environment variables
 
-```sh
-source ./path/to/.env_variables &&  python hyperparameters.py
-```
+  ```sh
+  source ./path/to/.env_variables &&  python hyperparameters.py
+  ```
 
-for example:
-
-```sh
-source ./mnist/.env_variables && python hyperparameters.py
-```
-
-for training models with arguments:
-
-```sh
-python main.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
-```
-
-for training models with environment variables:
-
-```sh
-source ./path/to/.env_variables && python main.py
-```
+- For training models with arguments:
+  ```sh
+  python main.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
+  ```
+- For training models with environment variables:
+  ```sh
+  source ./path/to/.env_variables && python main.py
+  ```
 
 ## Changes ⚠️
 
