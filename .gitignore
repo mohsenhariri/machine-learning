@@ -16,8 +16,9 @@ dist/
 .vscode
 
 # Datasets
-data/CIFAR10/
 data/MNIST/
+data/CIFAR10/
+data/FashionMNIST/
 data/ImageNet/
 data/data_dicom/
 data/dogs-vs-cats/
