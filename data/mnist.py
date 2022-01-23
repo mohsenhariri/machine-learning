@@ -6,7 +6,7 @@ Test Data:
 Number of datapoints: 10000
 
 Input:
-1*28*28
+1x28x28
 
 Number of classes: 10
 """
