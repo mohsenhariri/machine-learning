@@ -100,13 +100,6 @@ If both of them are set, the environment variable is ignored.
   source ./path/to/.env_variables && python main.py
   ```
 
-## Changes ⚠️
-
-These two changes don't apply to all models. ⚠️
-
-- Integration of all data_prep: data preparation path was changed to data directory.
-- Custom dataset builder source file was transferred to data directory.
-
 ## How to run
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -115,10 +108,22 @@ These two changes don't apply to all models. ⚠️
 
 <p align="right">(<a href="#top">back to top</a>)</p> -->
 
+- Install dependencies
+
+  ```sh
+  python3 -m venv env
+  source env/bin/activate
+  pip install -r requirements.txt
+  ```
+
 - MNIST
 
   ```sh
   source ./mnist/.env_variables && python ./main.py
+  ```
+
+  ```sh
+  tensorboard --logdir=./mnist/runs
   ```
 
 - CIFAR10

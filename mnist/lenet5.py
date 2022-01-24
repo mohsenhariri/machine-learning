@@ -1,37 +1,38 @@
-from os import environ, path
-from architectures.LeNet5.net import LeNet5
-# from .data_prep import train_loader, test_loader
-from data.mnist import train_loader, test_loader
+from os import path
 import torch
+import torchvision
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
+from tqdm import tqdm
+from architectures.LeNet5.net import LeNet5
+from data.mnist import train_loader, test_loader
 from hyperparameters import hp
 
-from tqdm import tqdm 
 
 torch.manual_seed(hp.reproducibility)
 
 j = 0
 while True:
     j += 1
-    file_exists = path.exists(f"./mnist/runs/{j}")
+    file_exists = path.exists(f"./mnist/runs/lenet5-{j}")
     if not file_exists:
         break
 
-writer = SummaryWriter(log_dir=f"./mnist/runs/{j}")
+writer = SummaryWriter(log_dir=f"./mnist/runs/lenet5-{j}")
 
-
-model = LeNet5(num_classes=10)
+model = LeNet5(num_classes=10)  
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(params=model.parameters(), lr=hp.lr)
 
 
-def train(model, criterion, optimizer):
+def train(model, criterion, optimizer, log=False):
     print("Training starts.")
     step = 0
     for epoch in range(hp.epochs):
-        for batch_idx, (x, y) in enumerate(tqdm(train_loader)):
-            # x and y includes batch_size samples
+        loop = tqdm(enumerate(train_loader), total=len(train_loader))
+        loop.set_description(f"Epoch {epoch+1}/{hp.epochs}")
+
+        for batch_idx, (x, y) in loop:  # enumerate(tran_loader)
             ## forward
             y_hat = model(x)
             loss = criterion(y_hat, y)
@@ -40,15 +41,16 @@ def train(model, criterion, optimizer):
             loss.backward()
             optimizer.step()
             ## log
-            # img_grid = torchvision.utils.make_grid(x)
-            # writer.add_image(tag=f"batch_iter: {batch_idx}", img_tensor=img_grid)
-            print(f"Epoch: {epoch+1}, loss after {batch_idx+1} bach {loss}")
-            if (batch_idx + 1) % 20 == 0:
-                step = step + batch_idx
-                writer.add_scalar("accuracy", accuracy(model, dataset=test_loader).item(), step)
-            #     writer.add_scalar("loss", loss.item(), step)
+            if log:
+                # img_grid = torchvision.utils.make_grid(x)
+                # writer.add_image(tag=f"batch_iter: {batch_idx}", img_tensor=img_grid)
+                # print(f"Epoch: {epoch+1}, loss after {batch_idx+1} bach {loss}")
+                if (batch_idx + 1) % 20 == 0:
+                    step = step + batch_idx
+                    writer.add_scalar("accuracy", accuracy(model, dataset=test_loader).item(), step)
+                    writer.add_scalar("loss", loss.item(), step)
 
-        print(f"Epoch {epoch+1} was finished.")
+        print(f"Accuracy after epoch {epoch+1}: {accuracy(model, dataset=test_loader).item()}")
 
     print("Training was finished.")
 
@@ -65,9 +67,10 @@ def accuracy(model, dataset):
         f += torch.count_nonzero(diff)
     acc = 100 - (100 * f) / (total_samples)
     print(f"Total number of false estimation : {f}")
-    print(f"Accuracy percent: {acc}")
+    # print(f"Accuracy percent: {acc}")
     return acc
 
 
-train(model, criterion, optimizer)
+train(model, criterion, optimizer, log=False)
 accuracy(model, test_loader)
+writer.close()
