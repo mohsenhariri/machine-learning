@@ -1,5 +1,5 @@
 # MNIST
-import mnist.lenet5
+# import mnist.lenet5
 # import mnist.alex
 
 # CIFAR10
@@ -9,17 +9,18 @@ import mnist.lenet5
 
 
 # Data Preparation
-import data.mnist
+# import data.mnist
 # import data.cifar
 # import data.fashion_mnist
 # import data.dogs_cat
 
 
 # Data Augmentation
-# import data_augmentation.a_dataset_normalizer
-# import data_augmentation.b_dataset_builder
-# import data_augmentation.c_dataset_visualization
-# import data_augmentation.transformation
+# import data_augmentation.ds_builder_1normalizer
+# import data_augmentation.ds_builder_2builder
+# import data_augmentation.ds_builder_3visualization
+# import data_augmentation.augmentation_with_albumentation
+# import data_augmentation.augmentation_with_torchvision
 
 # Image Processing
 # import image_processing.conv_pytorch
@@ -31,10 +32,3 @@ import data.mnist
 # import architectures.AlexNet.net
 # import architectures.VGG16.net
 # import architectures.UNet.net
-
-
-
-
-
-
- 

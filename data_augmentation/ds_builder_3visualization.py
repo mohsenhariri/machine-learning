@@ -1,4 +1,4 @@
-from data_augmentation.b_dataset_builder import train_loader
+from data_augmentation.ds_builder_2builder import train_loader
 import torchvision
 import matplotlib.pyplot as plt
 

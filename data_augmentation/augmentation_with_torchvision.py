@@ -39,5 +39,3 @@ transform = T.Compose(
 im_tensor = transform(img)
 plt.imshow(im_tensor[0], cmap="gray")
 plt.show()
-# exit()
-# print(im_tensor.size())
