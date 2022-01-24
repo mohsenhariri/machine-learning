@@ -1,5 +1,5 @@
 # MNIST
-# import mnist.lenet5
+import mnist.lenet5
 # import mnist.alex
 
 # CIFAR10

@@ -5,18 +5,11 @@ from data.mnist import train_loader, test_loader
 import torch
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
+from hyperparameters import hp
 
-# Hyperparameters
-try:
-    num_epochs = int(environ.get("NUM_EPOCHS"))
-    lr = float(environ.get("LEARNING_RATE"))
-    random_seed = int(environ.get("REPRODUCIBILITY"))
-except:
-    num_epochs = 1
-    lr = 0.1
-    random_seed = 777
+from tqdm import tqdm 
 
-torch.manual_seed(random_seed)
+torch.manual_seed(hp.reproducibility)
 
 j = 0
 while True:
@@ -30,14 +23,14 @@ writer = SummaryWriter(log_dir=f"./mnist/runs/{j}")
 
 model = LeNet5(num_classes=10)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(params=model.parameters(), lr=lr)
+optimizer = torch.optim.SGD(params=model.parameters(), lr=hp.lr)
 
 
 def train(model, criterion, optimizer):
     print("Training starts.")
     step = 0
-    for epoch in range(num_epochs):
-        for batch_ndx, (x, y) in enumerate(train_loader):
+    for epoch in range(hp.epochs):
+        for batch_idx, (x, y) in enumerate(tqdm(train_loader)):
             # x and y includes batch_size samples
             ## forward
             y_hat = model(x)
@@ -48,10 +41,10 @@ def train(model, criterion, optimizer):
             optimizer.step()
             ## log
             # img_grid = torchvision.utils.make_grid(x)
-            # writer.add_image(tag=f"batch_iter: {batch_ndx}", img_tensor=img_grid)
-            print(f"Epoch: {epoch+1}, loss after {batch_ndx+1} bach {loss}")
-            if (batch_ndx + 1) % 20 == 0:
-                step = step + batch_ndx
+            # writer.add_image(tag=f"batch_iter: {batch_idx}", img_tensor=img_grid)
+            print(f"Epoch: {epoch+1}, loss after {batch_idx+1} bach {loss}")
+            if (batch_idx + 1) % 20 == 0:
+                step = step + batch_idx
                 writer.add_scalar("accuracy", accuracy(model, dataset=test_loader).item(), step)
             #     writer.add_scalar("loss", loss.item(), step)
 
