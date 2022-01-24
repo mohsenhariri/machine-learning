@@ -70,6 +70,11 @@ def accuracy(model, dataset):
     # print(f"Accuracy percent: {acc}")
     return acc
 
+# sample_dataset_batch = next(iter(train_loader))
+# sample_input_batch = sample_dataset_batch[0]
+# sample_label_batch = sample_dataset_batch[1]
+# writer.add_graph(model, sample_input_batch)
+
 
 train(model, criterion, optimizer, log=False)
 accuracy(model, test_loader)

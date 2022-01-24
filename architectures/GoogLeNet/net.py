@@ -91,3 +91,14 @@ class GoogLeNet(nn.Module):
         super(GoogLeNet, self).__init__()
 
         # self.conv1 =
+
+
+def main():
+    from torchinfo import summary
+
+    model = GoogLeNet()
+    # summary(model=model, input_size=(100, 3, 224, 224)) ????
+
+
+if __name__ == "__main__":
+    main()

@@ -121,3 +121,17 @@ reses = [18, 34, 50, 101, 152]
 layers = [2, 2, 2, 2]
 layers = [3, 4, 6, 3]
 layers = [3, 4, 6, 3]
+
+
+
+
+
+def main():
+    from torchinfo import summary
+
+    model = ResNet()
+    # summary(model=model, input_size=(100, 3, 224, 224)) ???
+
+
+if __name__ == "__main__":
+    main()

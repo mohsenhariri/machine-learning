@@ -79,7 +79,7 @@
 ## Hyperparameters
 
 The argument values have priority over the environment variables.
-If both of them are set, the environment variable is ignored.
+If both of them are set, the environment variables are ignored.
 
 - Test hyperparameters
   ```sh

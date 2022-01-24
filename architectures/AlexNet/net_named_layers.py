@@ -122,9 +122,10 @@ class AlexNet(nn.Module):
 
 
 def main():
-    model = AlexNet()
+    from torchinfo import summary
 
-    print(model)
+    model = AlexNet()
+    summary(model=model, input_size=(100, 3, 224, 224))
 
 
 if __name__ == "__main__":

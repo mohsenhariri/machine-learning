@@ -77,3 +77,13 @@ if __name__ == "__main__":
     print(model)
 
 
+
+def main():
+    from torchinfo import summary
+
+    model = Unet()
+    # summary(model=model, input_size=(100, 3, 224, 224)) ???
+
+
+if __name__ == "__main__":
+    main()

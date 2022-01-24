@@ -1,6 +1,6 @@
 """
 The argument values have priority over the environment variables.
-If both of them are set, the environment variable is ignored.
+If both of them are set, the environment variables are ignored.
 
 python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
 source ./path/to/.env_variables && python hyperparameters.py

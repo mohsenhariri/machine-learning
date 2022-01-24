@@ -35,8 +35,11 @@ class LeNet5(nn.Module):
 
 
 def main():
+    from torchinfo import summary
+
     model = LeNet5()
-    print(model)
+    summary(model=model, input_size=(100, 1, 28, 28))
+    # print(model)
 
 
 if __name__ == "__main__":

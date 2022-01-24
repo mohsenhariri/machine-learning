@@ -77,6 +77,13 @@ def main():
     print(model)
 
 
+def main():
+    from torchinfo import summary
+
+    model = VGG16()
+    # summary(model=model, input_size=(100, 3, 224, 224)) ???
+
+
 if __name__ == "__main__":
     main()
 
