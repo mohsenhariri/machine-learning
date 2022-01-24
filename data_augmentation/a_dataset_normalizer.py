@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-input_path = r"./data/custom_cat_dog"  # in linux "/" isn't matter!
+input_path = r"./data/custom_cat_dog"  # in linux "/" doesn't matter!
 
 for file in os.listdir(input_path):
     if file.endswith(".jpg"):

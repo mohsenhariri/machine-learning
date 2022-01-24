@@ -12,6 +12,7 @@
 import data.mnist
 # import data.cifar
 # import data.fashion_mnist
+# import data.dogs_cat
 
 
 # Data Augmentation
