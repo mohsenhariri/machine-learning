@@ -4,8 +4,8 @@ import torchvision
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
-from architectures.VGG16.net import VGG16
-from data.cifar import train_loader, test_loader
+from architectures.LeNet5.net import LeNet5
+from data.cifar_resized import train_loader, test_loader
 from hyperparameters import hp
 
 
@@ -14,18 +14,15 @@ torch.manual_seed(hp.reproducibility)
 j = 0
 while True:
     j += 1
-    file_exists = path.exists(f"./cifar/runs/VGG16-{j}")
+    file_exists = path.exists(f"./cifar/runs/lenet5-{j}")
     if not file_exists:
         break
 
-writer = SummaryWriter(log_dir=f"./cifar/runs/VGG16-{j}")
+writer = SummaryWriter(log_dir=f"./cifar/runs/lenet5-{j}")
 
-
-model = VGG16(num_classes=10, input_size=(32, 32))
-# model = VGG16(num_classes=10, input_size=(64, 64))
-
+model = LeNet5(num_classes=10, is_colored=True)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(params=model.parameters(), momentum=hp.momentum, lr=hp.lr)
+optimizer = torch.optim.SGD(params=model.parameters(), lr=hp.lr)
 
 
 def train(model, criterion, optimizer, log=False):

@@ -127,8 +127,13 @@ If both of them are set, the environment variables are ignored.
   ```
 
 - CIFAR10
+
   ```sh
   source ./cifar/.env_variables && python ./main.py
+  ```
+
+  ```sh
+  tensorboard --logdir=./cifar/runs
   ```
 
 ### Network Architectures
@@ -152,7 +157,6 @@ If both of them are set, the environment variables are ignored.
 - [LeNet5](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/lenet5.py)
 - [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/alex.py)
 - [VGG16](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar/vgg16.py)
-- [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/cifar)
 
 ### References
 
