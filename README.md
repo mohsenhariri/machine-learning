@@ -83,7 +83,7 @@ If both of them are set, the environment variables are ignored.
 
 - Test hyperparameters
   ```sh
-    python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
+  python hyperparameters.py --batch-size 1 --batch-size-test 2 --epochs 3 --lr 4 --momentum 5 --reproducibility 6
   ```
 - Test hyperparameters with environment variables
 
@@ -143,7 +143,7 @@ If both of them are set, the environment variables are ignored.
 
 ### MNIST
 
-- [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/model_type1_fc.py)
+- [Fully connected](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/fc.py)
 - [LeNet5](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/lenet5.py)
 - [AlexNet](https://github.com/mohsenhariri/ml-simple-models/blob/master/mnist/alex.py)
 

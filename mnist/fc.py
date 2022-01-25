@@ -4,7 +4,6 @@ import torchvision
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
-from architectures.LeNet5.net import LeNet5
 from data.mnist import train_loader, test_loader
 from hyperparameters import hp
 
@@ -14,13 +13,32 @@ torch.manual_seed(hp.reproducibility)
 j = 0
 while True:
     j += 1
-    file_exists = path.exists(f"./mnist/runs/lenet5-{j}")
+    file_exists = path.exists(f"./mnist/runs/fc-{j}")
     if not file_exists:
         break
 
-writer = SummaryWriter(log_dir=f"./mnist/runs/lenet5-{j}")
+writer = SummaryWriter(log_dir=f"./mnist/runs/fc-{j}")
 
-model = LeNet5(num_classes=10)
+
+class NN(nn.Module):
+    def __init__(self) -> None:
+        super(NN, self).__init__()
+        self.fc1 = nn.Linear(in_features=28 * 28, out_features=74)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(in_features=74, out_features=10)
+
+    def forward(self, x):
+        x_flatted = x.view(x.size(0), -1)
+        z = self.fc1(x_flatted)
+        a = self.relu(z)
+        out = self.fc2(a)
+        return out
+
+
+model = NN()
+
+
+model = NN()
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(params=model.parameters(), lr=hp.lr)
 
@@ -76,12 +94,6 @@ def save_model(model):
     current_time = time.strftime("%H-%M-%S")
     torch.save(model.state_dict(), f"./mnist/saved_models/{current_time}_dict.pth")
     print("Model was saved.")
-
-
-# sample_dataset_batch = next(iter(train_loader))
-# sample_input_batch = sample_dataset_batch[0]
-# sample_label_batch = sample_dataset_batch[1]
-# writer.add_graph(model, sample_input_batch)
 
 
 train(model, criterion, optimizer, log=False)

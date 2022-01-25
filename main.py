@@ -1,6 +1,9 @@
 # MNIST
+# import mnist.fc
 # import mnist.lenet5
+# import mnist.lenet5_loader
 # import mnist.alex
+
 
 # CIFAR10
 # import cifar.lenet5
